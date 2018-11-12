@@ -9,7 +9,7 @@ import java.util.HashMap;
  * @Title: CollectionUtils.java
  * @Package com.jungle.common.utils
  * @Description: 集合工具类
- * copyright © 2018- holmes.com
+ * copyright © 2018- github.com
  */
 public final class CollectionUtils {
 

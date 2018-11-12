@@ -7,7 +7,7 @@ package com.jungle.common.utils;
  * @Title: StringUtils.java
  * @Package com.jungle.common.utils
  * @Description: 字符串工具类
- * copyright © 2018- holmes.com
+ * copyright © 2018- github.com
  */
 public final class StringUtils {
 

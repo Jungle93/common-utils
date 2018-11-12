@@ -9,7 +9,7 @@ import java.util.Collection;
  * @Title: Assert.java
  * @Package com.jungle.common.utils
  * @Description: 判断类型
- * copyright © 2018- holmes.com
+ * copyright © 2018- github.com
  */
 public final class Assert {
 

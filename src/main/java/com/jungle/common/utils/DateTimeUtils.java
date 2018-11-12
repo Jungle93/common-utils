@@ -14,7 +14,7 @@ import java.util.Date;
  * @Title: DateTimeUtils.java
  * @Package com.jungle.common.utils
  * @Description: 日期时间工具类
- * copyright © 2018- holmes.com
+ * copyright © 2018- github.com
  */
 public final class DateTimeUtils {
 
