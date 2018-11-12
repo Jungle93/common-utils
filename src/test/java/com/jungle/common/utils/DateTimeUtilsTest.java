@@ -27,5 +27,4 @@ public class DateTimeUtilsTest {
         Assert.assertNotNull(DateTimeUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
     }
 
-
 }
