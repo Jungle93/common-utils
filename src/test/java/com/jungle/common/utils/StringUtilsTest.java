@@ -37,4 +37,28 @@ public class StringUtilsTest {
         Assert.assertFalse(StringUtils.equalsWithoutNPE("2", null));
         Assert.assertFalse(StringUtils.equalsWithoutNPE("i know who you are", "you know who i am"));
     }
+
+
+    @Test
+    public void toUpperCaseFirst() {
+        Assert.assertEquals("Hello", StringUtils.toUpperCaseFirst("hello"));
+        Assert.assertEquals("Hello", StringUtils.toUpperCaseFirst("Hello"));
+        Assert.assertNotEquals("hello", StringUtils.toUpperCaseFirst("hello"));
+    }
+
+    @Test
+    public void toLowerCaseFirst() {
+        Assert.assertEquals("hello", StringUtils.toLowerCaseFirst("Hello"));
+        Assert.assertEquals("hello", StringUtils.toLowerCaseFirst("hello"));
+        Assert.assertNotEquals("Hello", StringUtils.toLowerCaseFirst("Hello"));
+    }
+
+    @Test
+    public void underScoreCase2CamelCase() {
+
+        Assert.assertEquals("abC", StringUtils.underScoreCase2CamelCase("ab_C"));
+        Assert.assertEquals("cBd", StringUtils.underScoreCase2CamelCase("cBd"));
+        Assert.assertEquals("abcdefghiJkl", StringUtils.underScoreCase2CamelCase("abcdefghi_jkl"));
+
+    }
 }

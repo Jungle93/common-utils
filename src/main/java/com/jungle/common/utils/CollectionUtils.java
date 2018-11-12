@@ -1,6 +1,10 @@
 package com.jungle.common.utils;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author jungle
@@ -179,5 +183,26 @@ public final class CollectionUtils {
         return args;
     }
 
+    /**
+     * 构造List，虽然也是ArrayList，但是里面的类与{@link java.util.ArrayList}不是同一个，
+     * 这个是Arrays中的一个私有类，仅仅只是继承了{@link java.util.AbstractList}
+     *
+     * @param args T ...
+     * @param <T>  类型
+     * @return T List
+     */
+    public static <T> List<T> list(T... args) {
+        return Arrays.asList(args);
+    }
 
+    /**
+     * 将所给参数设置为一个{@link HashSet}
+     *
+     * @param args T ... 不定参数列表
+     * @param <T>  类型
+     * @return T HashSet
+     */
+    public static <T> Set<T> set(T... args) {
+        return new HashSet<T>(Arrays.asList(args));
+    }
 }
