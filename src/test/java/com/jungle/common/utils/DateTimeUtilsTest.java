@@ -27,4 +27,16 @@ public class DateTimeUtilsTest {
         Assert.assertNotNull(DateTimeUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
     }
 
+    @Test
+    public void diffInDays() {
+        Assert.assertEquals(16,DateTimeUtils.diffInDays(
+                DateTimeUtils.parse("2018-11-13 00:00:00",DateTimeUtils.SDF_YYYY_MM_DD_HH_MM_SS),
+                DateTimeUtils.parse("2018-11-29 23:59:59",DateTimeUtils.SDF_YYYY_MM_DD_HH_MM_SS)
+        ));
+    }
+
+    @Test
+    public void date2LocalDate() {
+        Assert.assertNotNull(DateTimeUtils.date2LocalDate(new Date()));
+    }
 }

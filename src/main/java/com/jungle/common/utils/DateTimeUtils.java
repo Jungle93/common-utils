@@ -5,6 +5,10 @@ import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 /**
@@ -86,6 +90,42 @@ public final class DateTimeUtils {
     public static String format(Date date, String pattern) {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
+    }
+
+    /**
+     * 将{@link Date}按当前时区转换为{@link LocalDate}。
+     *
+     * @param date {@link Date}
+     * @return {@link LocalDate}
+     */
+    public static LocalDate date2LocalDate(Date date) {
+        return date2LocalDate(date, ZoneId.systemDefault());
+    }
+
+    /**
+     * * 将{@link Date}按时区转换为{@link LocalDate}。
+     *
+     * @param date   {@link Date}
+     * @param zoneId {@link ZoneId}目标时区id
+     * @return {@link LocalDate}
+     */
+    public static LocalDate date2LocalDate(Date date, ZoneId zoneId) {
+        Instant instant = date.toInstant();
+        return instant.atZone(zoneId).toLocalDate();
+    }
+
+    /**
+     * 计算两个Date之间的日期差。
+     *
+     * @param start 开始时间
+     * @param end   结束时间
+     * @return long
+     */
+    public static long diffInDays(Date start, Date end) {
+
+        LocalDate localStart = date2LocalDate(start);
+        LocalDate localEnd = date2LocalDate(end);
+        return ChronoUnit.DAYS.between(localStart, localEnd);
     }
 
 }
