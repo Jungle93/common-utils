@@ -91,7 +91,7 @@ public final class StringUtils {
         }
         boolean _flag = false;
         char[] chars = s.toCharArray();
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append(chars[0]);
         for (int i = 1, len = chars.length; i < len; i++) {
             char c = chars[i];

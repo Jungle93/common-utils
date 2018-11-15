@@ -29,9 +29,19 @@ public class DateTimeUtilsTest {
 
     @Test
     public void diffInDays() {
+
+        Assert.assertEquals(1,DateTimeUtils.diffInDays(
+                DateTimeUtils.parse("2018-11-01 23:00:00",DateTimeUtils.SDF_YYYY_MM_DD_HH_MM_SS),
+                DateTimeUtils.parse("2018-11-02 00:00:59",DateTimeUtils.SDF_YYYY_MM_DD_HH_MM_SS)
+        ));
         Assert.assertEquals(16,DateTimeUtils.diffInDays(
                 DateTimeUtils.parse("2018-11-13 00:00:00",DateTimeUtils.SDF_YYYY_MM_DD_HH_MM_SS),
                 DateTimeUtils.parse("2018-11-29 23:59:59",DateTimeUtils.SDF_YYYY_MM_DD_HH_MM_SS)
+        ));
+
+        Assert.assertEquals(-16,DateTimeUtils.diffInDays(
+                DateTimeUtils.parse("2018-11-29 23:59:59",DateTimeUtils.SDF_YYYY_MM_DD_HH_MM_SS),
+                DateTimeUtils.parse("2018-11-13 00:00:00",DateTimeUtils.SDF_YYYY_MM_DD_HH_MM_SS)
         ));
     }
 
