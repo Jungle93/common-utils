@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
  * @Title: MD5Utils.java
  * @Package com.jungle.common.utils
  * @Description: MD5工具类
- * copyright © 2018- holmes.com
+ * copyright © 2018- github.com
  */
 public final class MD5Utils {
 
