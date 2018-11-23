@@ -49,28 +49,29 @@ public final class MD5Utils {
      * @return MD5(source)
      */
     public static String digest(String source) {
-        return digest(source, Charset.forName("UTF-8"));
+        return digest(source, false);
+    }
+
+    /**
+     * 以给定的编码获取字符串内容MD5算法的消息摘要。
+     *
+     * @param source    目标字符串
+     * @param upperFlag 大写标识
+     * @return MD5(source)
+     */
+    public static String digest(String source, boolean upperFlag) {
+        return digest(source, upperFlag, Charset.forName("UTF-8"));
     }
 
     /**
      * 以给定的编码获取字符串内容MD5算法的消息摘要。
      *
      * @param source  目标字符串
+     * @param upperFlag 大写标识
      * @param charset {@link Charset}
      * @return MD5(source)
      */
-    public static String digest(String source, Charset charset) {
-        return digest(source, charset, false);
-    }
-
-    /**
-     * 以给定的编码获取字符串内容MD5算法的消息摘要。
-     *
-     * @param source  目标字符串
-     * @param charset {@link Charset}
-     * @return MD5(source)
-     */
-    public static String digest(String source, Charset charset, boolean upperFlag) {
+    public static String digest(String source, boolean upperFlag, Charset charset) {
         try {
             byte[] digestBytes = MessageDigest.getInstance("md5").digest(source.getBytes(charset));
             return new String(encodeHex(digestBytes, upperFlag ? DIGITS_UPPER : DIGITS_LOWER));
