@@ -30,7 +30,7 @@ public final class ImageUtils {
         int imageInHeight = bufferedImageIn.getHeight();
         int imageInWidth = bufferedImageIn.getWidth();
 
-        if (x <= 0 || y <= 0 || width <= 0 || height <= 0) {
+        if (x < 0 || y < 0 || width < 0 || height < 0) {
             throw new IllegalArgumentException("x,y,width,height should be positive!");
         }
 
