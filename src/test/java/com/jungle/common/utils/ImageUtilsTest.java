@@ -22,7 +22,7 @@ public class ImageUtilsTest {
     @Test
     public void areaMask() throws IOException {
         BufferedImage bufferedImageIn = ImageUtils.loadImage("E:\\dsp\\backup\\lena.jpg");
-        BufferedImage bufferedImageOut = ImageUtils.areaMask(bufferedImageIn, 100, 100, 400, 400, 10);
+        BufferedImage bufferedImageOut = ImageUtils.areaMask(bufferedImageIn, 100, 100, 50, 200, 10);
         ImageIO.write(bufferedImageOut,"jpg",new File("E:\\dsp\\output\\lena.jpg"));
     }
 }

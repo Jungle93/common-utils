@@ -41,26 +41,26 @@ public final class ImageUtils {
         double[] buf = new double[width * height * 3];
         double[] pixels = bufferedImageIn.getRaster().getPixels(x, y, width, height, buf);
         double[][][] rgbMatrix = pixelsToRgbMatrix(pixels, width, height);
-
+        double[][][] maskRgbMatrix = new double[width][height][3];
         for (int n = 0; n < 3; n++) {
-            for (int i = 0; i < width; i++) {
-                for (int j = 0; j < height; j++) {
-                    rgbMatrix[n][i][j] = rgbMatrix[n][(i / maskSize) * maskSize][(j / maskSize) * maskSize];    //除余舍弃，故只有整数部分
+            for (int j = 0; j < height; j++) {
+                for (int i = 0; i < width; i++) {
+                    maskRgbMatrix[i][j][n] = rgbMatrix[(i / maskSize) * maskSize][(j / maskSize) * maskSize][n];    //除余舍弃，故只有整数部分
                 }
             }
         }
-        bufferedImageIn.getRaster().setPixels(x, y, width, height, rgbMatrixToPixels(rgbMatrix, width, height));
+        bufferedImageIn.getRaster().setPixels(x, y, width, height, rgbMatrixToPixels(maskRgbMatrix, width, height));
         return bufferedImageIn;
     }
 
 
     public static double[][][] pixelsToRgbMatrix(double[] pixels, int width, int height) {
-        double[][][] rgbMatrix = new double[3][width][height];
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                rgbMatrix[0][i][j] = pixels[(i * width + j) * 3];          //  R?
-                rgbMatrix[1][i][j] = pixels[(i * width + j) * 3 + 1];      //  G?
-                rgbMatrix[2][i][j] = pixels[(j * width + i) * 3 + 2];      //  B?
+        double[][][] rgbMatrix = new double[width][height][3];
+        for (int j = 0; j < height; j++) {
+            for (int i = 0; i < width; i++) {
+                rgbMatrix[i][j][0] = pixels[(j * width + i) * 3];          //  R?
+                rgbMatrix[i][j][1] = pixels[(j * width + i) * 3 + 1];      //  G?
+                rgbMatrix[i][j][2] = pixels[(j * width + i) * 3 + 2];      //  B?
             }
         }
         return rgbMatrix;
@@ -68,11 +68,11 @@ public final class ImageUtils {
 
     public static double[] rgbMatrixToPixels(double[][][] rgbMatrix, int width, int height) {
         double[] pixels = new double[width * height * 3];
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                pixels[(i * width + j) * 3] = rgbMatrix[0][i][j];
-                pixels[(i * width + j) * 3 + 1] = rgbMatrix[1][i][j];
-                pixels[(i * width + j) * 3 + 2] = rgbMatrix[2][i][j];
+        for (int j = 0; j < height; j++) {
+            for (int i = 0; i < width; i++) {
+                pixels[(j * width + i) * 3] = rgbMatrix[i][j][0];
+                pixels[(j * width + i) * 3 + 1] = rgbMatrix[i][j][1];
+                pixels[(j * width + i) * 3 + 2] = rgbMatrix[i][j][2];
             }
         }
         return pixels;
