@@ -40,4 +40,7 @@ public final class Base64Utils {
         return new String(decoder.decodeBuffer(source), charset);
     }
 
+    public static String encode(byte[] bytes){
+        return encoder.encode(bytes);
+    }
 }

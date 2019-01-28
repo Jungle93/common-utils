@@ -14,6 +14,7 @@ public class Base64UtilsTest {
         assertEquals("aGVsbG8s5p2O5aW95ZGA77yB",Base64Utils.encode("hello,李好呀！"));
         assertEquals("aGVsbG8s5p2O5aW95ZGA77yB",Base64Utils.encode("hello,李好呀！",Charset.forName("UTF-8")));
         assertEquals("aGks55CG5aW95ZGA77yB",Base64Utils.encode("hi,理好呀！",Charset.forName("UTF-8")));
+        assertEquals("aGks55CG5aW95ZGA77yB",Base64Utils.encode("hi,理好呀！".getBytes()));
     }
 
     @Test
