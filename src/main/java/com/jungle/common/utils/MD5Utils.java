@@ -3,6 +3,10 @@ package com.jungle.common.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -41,6 +45,25 @@ public final class MD5Utils {
      * no-args constructor.
      */
     private MD5Utils() {/**/ }
+
+    public static String digest(File file){
+        byte[] buffer = new byte[4096];
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            FileInputStream fis = new FileInputStream(file);
+            int length;
+            while ((length = fis.read(buffer)) != -1) {
+                md.update(buffer, 0, length);
+            }
+            fis.close();
+            byte[] bytes = md.digest();
+            return  new BigInteger(1, bytes).toString(16);
+        } catch (NoSuchAlgorithmException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     /**
      * 获取所给字符串内容MD5算法的消息摘要。
