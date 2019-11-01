@@ -52,7 +52,9 @@ public final class DESUtils {
      * @throws BadPaddingException       坏的填充方式
      * @throws IllegalBlockSizeException 非法块大小
      */
-    public static byte[] encrypt(byte[] dataSource, String password) throws InvalidKeyException, InvalidKeySpecException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException {
+    public static byte[] encrypt(byte[] dataSource, String password)
+            throws InvalidKeyException, InvalidKeySpecException, NoSuchPaddingException,NoSuchAlgorithmException,
+            BadPaddingException, IllegalBlockSizeException {
         DESKeySpec desKey = new DESKeySpec(password.getBytes());
         SecretKey secretKey = keyFactory.generateSecret(desKey);
         Cipher cipher = Cipher.getInstance("DES");
@@ -73,7 +75,9 @@ public final class DESUtils {
      * @throws BadPaddingException       坏的填充方式
      * @throws IllegalBlockSizeException 非法块大小
      */
-    public static byte[] decrypt(byte[] encryptText, String password) throws InvalidKeyException, InvalidKeySpecException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException {
+    public static byte[] decrypt(byte[] encryptText, String password)
+            throws InvalidKeyException, InvalidKeySpecException, NoSuchPaddingException, NoSuchAlgorithmException,
+            BadPaddingException, IllegalBlockSizeException {
         DESKeySpec desKey = new DESKeySpec(password.getBytes());
         SecretKey secretKey = keyFactory.generateSecret(desKey);
         Cipher cipher = Cipher.getInstance("DES");

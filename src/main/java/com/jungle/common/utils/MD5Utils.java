@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -46,18 +48,27 @@ public final class MD5Utils {
      */
     private MD5Utils() {/**/ }
 
-    public static String digest(File file){
+    public static String digest(File file) {
+        try {
+            return digest(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String digest(InputStream is) {
+
         byte[] buffer = new byte[4096];
-        try{
+        try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            FileInputStream fis = new FileInputStream(file);
             int length;
-            while ((length = fis.read(buffer)) != -1) {
+            while ((length = is.read(buffer)) != -1) {
                 md.update(buffer, 0, length);
             }
-            fis.close();
+            is.close();
             byte[] bytes = md.digest();
-            return  new BigInteger(1, bytes).toString(16);
+            return new BigInteger(1, bytes).toString(16);
         } catch (NoSuchAlgorithmException | IOException e) {
             e.printStackTrace();
         }
